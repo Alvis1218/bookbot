@@ -1,7 +1,7 @@
 def main():
     book_path = "books/frankenstein.txt"
     book_text = get_book_text(book_path)
-    print(letter_count(book_text))
+    report(book_text, book_path)
 
 def get_book_text(path):
     with open(path) as f:
@@ -18,5 +18,20 @@ def letter_count(text):
         if character in letter_totals:
             letter_totals[character] += 1
     return letter_totals
+
+def sort_on(dict):
+    return dict["num"]
+
+def report(text, path):
+    letters = []
+    word_sum = word_count(text)
+    letter_sum = letter_count(text)
+    for letter in letter_sum:
+        letters.append({"letter" : letter, "num" : letter_sum[letter]})
+    letters.sort(reverse=True, key=sort_on)
+    print(f"--- Begin report of {path} ---\n{word_sum} words found in the document\n")
+    for entry in letters:
+        print(f"The '{entry["letter"]}' character was found {entry["num"]} times")
+    print("--- End report ---")
 
 main()
