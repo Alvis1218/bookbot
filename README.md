@@ -1,2 +1,2 @@
 # bookbot
-For bookbot practice task
+For boot.dev bookbot practice task
